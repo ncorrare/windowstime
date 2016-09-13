@@ -56,6 +56,7 @@ class windowstime (
   exec { 'w32tm /resync':
     refreshonly => true,
     notify      => Service['w32time'],
+    path        => ['C:\Windows\System32'],
   }
   service { 'w32time':
     ensure => running,
