@@ -1,14 +1,15 @@
-source ENV['GEM_SOURCE'] || 'https://rubygems.org'
+source 'https://rubygems.org'
 
 puppetversion = ENV.key?('PUPPET_VERSION') ? "#{ENV['PUPPET_VERSION']}" : ['>= 3.3']
-gem 'metadata-json-lint'
+facterversion = ENV.key?('FACTER_VERSION') ? "#{ENV['FACTER_VERSION']}" : ['>= 1.7.0']
 gem 'puppet', puppetversion
-gem 'puppetlabs_spec_helper', '>= 1.0.0'
+gem 'puppetlabs_spec_helper', '>= 0.8.2'
+#Enable linting
 gem 'puppet-lint', '>= 1.0.0'
-gem 'facter', '>= 1.7.0'
-gem 'rspec-puppet'
-
-# rspec must be v2 for ruby 1.8.7
-if RUBY_VERSION >= '1.8.7' and RUBY_VERSION < '1.9'
-  gem 'rspec', '~> 2.0'
-end
+gem 'facter', facterversion
+#Enable metadata linting
+gem 'metadata-json-lint'
+#Run coverage tests
+gem 'coveralls', require: false
+#Tools to deploy automatically to the Puppet Forge
+gem 'puppet-blacksmith'
