@@ -58,8 +58,8 @@ class windowstime (
     notify      => Service['w32time'],
   }
   service { 'w32time':
-    ensure  => running,
-    enabled => true,
+    ensure => running,
+    enable => true,
   }
 
 }
