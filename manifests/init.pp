@@ -51,15 +51,15 @@ class windowstime (
     ensure => present,
     type   => string,
     data   => $regvalue,
-    notify => Exec['c:/Windows/System32/w32tm.exe /resync'],
+    notify      => Service['w32time'],
   }
   exec { 'c:/Windows/System32/w32tm.exe /resync':
     refreshonly => true,
-    notify      => Service['w32time'],
   }
   service { 'w32time':
     ensure => running,
     enable => true,
+    notify => Exec['c:/Windows/System32/w32tm.exe /resync'],
   }
 
 }
