@@ -54,8 +54,8 @@ class windowstime (
     notify => Exec['resync'],
   }
   exec { 'w32tm /resync':
-    notifyonly => true,
-    notify     => Service['w32time'],
+    refreshonly => true,
+    notify      => Service['w32time'],
   }
   service { 'w32time':
     ensure  => running,
