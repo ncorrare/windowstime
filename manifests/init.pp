@@ -1,35 +1,33 @@
 # Class: windowstime
 # ===========================
 #
-# Full description of class windowstime here.
+# A module to manage windows time configuration.
 #
 # Parameters
 # ----------
 #
 # Document parameters here.
 #
-# * `sample parameter`
-# Explanation of what this parameter affects and what it defaults to.
-# e.g. "Specify one or more upstream ntp servers as an array."
+# * 'servers' 
+# A hash of time servers, including the configuration flags as follows:
 #
-# Variables
-# ----------
-#
-# Here you should define a list of variables that this module would require.
-#
-# * `sample variable`
-#  Explanation of how this variable affects the function of this class and if
-#  it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#  External Node Classifier as a comma separated list of hostnames." (Note,
-#  global variables should be avoided in favor of class parameters as
-#  of Puppet 2.6.)
-#
+# 0x01 SpecialInterval
+# 0x02 UseAsFallbackOnly
+# 0x04 SymmatricActive
+# 0x08 Client
+# The Params class contains some sane defaults:
+#   $servers = { 'pool.ntp.org'     => '0x01',
+#               'time.windows.com' => '0x01',
+#               'time.nist.gov'    => '0x02',
+#  }
 # Examples
 # --------
 #
 # @example
 #    class { 'windowstime':
-#      servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
+#      servers => { 'pool.ntp.org'     => '0x01',
+#                   'time.windows.com' => '0x01',
+#                 }
 #    }
 #
 # Authors
