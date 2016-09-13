@@ -8,7 +8,7 @@
 #
 # Document parameters here.
 #
-# * 'servers' 
+# * 'servers'
 # A hash of time servers, including the configuration flags as follows:
 #
 # 0x01 SpecialInterval
@@ -45,6 +45,11 @@ class windowstime (
 ) inherits windowstime::params {
   validate_hash($servers)
   $regvalue = maptoreg($servers)
+  registry_value { 'HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\Type':
+    ensure => present,
+    type   => string,
+    data   => 'NTP'
+  }
   registry_value { 'HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\NtpServer':
     ensure => present,
     type   => string,
