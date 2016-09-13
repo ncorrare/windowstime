@@ -1,0 +1,15 @@
+{
+  "name": "ncorrare-windowstime",
+  "version": "0.1.0",
+  "author": "ncorrare",
+  "summary": "A module to manage W32Time configuration",
+  "license": "Apache-2.0",
+  "source": "https://github.com/ncorrare/windowstime",
+  "project_page": "https://github.com/ncorrare/windowstime",
+  "issues_url": "https://github.com/ncorrare/windowstime/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ],
+  "data_provider": null
+}
+
