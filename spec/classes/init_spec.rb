@@ -1,7 +1,7 @@
 require 'spec_helper'
-describe 'windowstime' do
+describe 'windowstime', :type => :class do
 
   context 'with default values for all parameters' do
-    it { should contain_class('windowstime') }
+    it { should_not compile }
   end
 end

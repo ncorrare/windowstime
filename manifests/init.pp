@@ -54,7 +54,7 @@ class windowstime (
     ensure => present,
     type   => string,
     data   => $regvalue,
-    notify      => Service['w32time'],
+    notify => Service['w32time'],
   }
   exec { 'c:/Windows/System32/w32tm.exe /resync':
     refreshonly => true,

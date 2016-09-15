@@ -8,8 +8,8 @@ class windowstime::params {
   # Source: https://blogs.msdn.microsoft.com/w32time/2008/02/26/configuring-the-time-service-ntpserver-and-specialpollinterval/
 
   $servers = { 'pool.ntp.org'     => '0x01',
-               'time.windows.com' => '0x01',
-               'time.nist.gov'    => '0x02',
-  }
+              'time.windows.com' => '0x01',
+              'time.nist.gov'    => '0x02',
+              }
 }
 
