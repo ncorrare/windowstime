@@ -10,7 +10,7 @@
 
 ## Description
 
-This module configures NTP sync on Windows Servers. It's extremely useful on standalone instances not connected to AD. It switches the W32time Service from triggered to running, so it's constantly verifying and syncing the clock.
+This module configures NTP sync on Windows Servers. It's extremely useful on standalone instances not connected to AD. It switches the W32time Service from triggered to running, so it's constantly verifying and syncing the clock. It can also configure the systems in the correct timezone.
 ## Setup
 
 ### What windowstime affects
@@ -18,6 +18,7 @@ This module configures NTP sync on Windows Servers. It's extremely useful on sta
 * Alters the HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\NtpServer to the defined list (and flags) of NTP servers.
 * Configures the w32time service.
 * Does an initial resync.
+* If timezone is set, it will configure the system to the specified timezone.
 
 ### Beginning with windowstime
 
@@ -36,12 +37,26 @@ Or configure your own NTP servers:
     }
 ```
 
+Or configure your NTP servers and the timezone:
+```puppet
+    class { 'windowstime':
+      servers  => { 'pool.ntp.org'     => '0x01',
+                    'time.windows.com' => '0x01',
+                  },
+      timezone => 'Greenwich Standard Time',
+    }
+```
+
+Timezone values are validated to parameters accepted from the tzutil command. You can check the full list on data/common.yaml.
+
+
+
 Please ensure that servers have the correct flag:
 
-0x01 SpecialInterval
-0x02 UseAsFallbackOnly
-0x04 SymmatricActive
-0x08 Client
+- 0x01 SpecialInterval
+- 0x02 UseAsFallbackOnly
+- 0x04 SymmatricActive
+- 0x08 Client
 
 ## Development
 
