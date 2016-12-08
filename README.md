@@ -20,6 +20,8 @@ This module configures NTP sync on Windows Servers. It's extremely useful on sta
 * Does an initial resync.
 * If timezone is set, it will configure the system to the specified timezone.
 
+![Node Graph](https://github.com/ncorrare/windowstime/raw/master/windowstime_affects.png)
+
 ### Beginning with windowstime
 
 You can just include the class to configure the server to sane defaults:
