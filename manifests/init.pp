@@ -45,8 +45,6 @@ class windowstime (
   Optional[Array] $timezones,
 ) {
 
-  validate_re($timezone, $timezones, 'The specified string is not a valid Timezone')
-
   $regvalue = maptoreg($servers)
   registry_value { 'HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\Type':
     ensure => present,
@@ -72,6 +70,7 @@ class windowstime (
   }
   
   if $timezone {
+    validate_re($timezone, $timezones, 'The specified string is not a valid Timezone')
     exec { "c:/Windows/System32/tzutil.exe /s $timezone":
       unless => "c:/Windows/System32/tzutil.exe /g | find \"$timezone\"",
     }
