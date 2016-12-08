@@ -1,5 +1,5 @@
 ---
-timezones:
+windowstime::timezones:
   - Afghanistan Standard Time
   - Alaskan Standard Time
   - Arab Standard Time
@@ -103,7 +103,7 @@ timezones:
   - West Pacific Standard Time
   - Yakutsk Standard Time
 
-servers:
+windowstime::servers:
   pool.ntp.org: "0x01"
   time.windows.com: "0x01"
   time.nist.gov: "0x02"
