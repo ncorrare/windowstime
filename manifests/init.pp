@@ -40,9 +40,9 @@
 # Copyright 2016 Your name here, unless otherwise noted.
 #
 class windowstime (
-  Optional[Hash] $servers,
+  Optional[Hash] $servers = undef,
   Optional[String] $timezone = undef,
-  Optional[Array] $timezones,
+  Optional[Array] $timezones = undef,
 ) {
 
   validate_re($timezone, $timezones, 'The specified string is not a valid Timezone')
