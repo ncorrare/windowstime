@@ -41,7 +41,7 @@
 #
 class windowstime (
   Hash $servers,
-  String $timezone = undef,
+  Optional[String] $timezone = undef,
   Array $timezones,
 ) {
 
