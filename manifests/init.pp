@@ -6,7 +6,6 @@
 # Parameters
 # ----------
 #
-# Document parameters here.
 #
 # * 'servers'
 # A hash of time servers, including the configuration flags as follows:
@@ -41,28 +40,41 @@
 # Copyright 2016 Your name here, unless otherwise noted.
 #
 class windowstime (
-  $servers = $windowstime::params::servers
-) inherits windowstime::params {
-  validate_hash($servers)
+  Optional[Hash] $servers,
+  Optional[String] $timezone = undef,
+  Optional[Array] $timezones,
+) {
+
   $regvalue = maptoreg($servers)
   registry_value { 'HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\Type':
     ensure => present,
     type   => string,
     data   => 'NTP'
   }
+
   registry_value { 'HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\NtpServer':
     ensure => present,
     type   => string,
     data   => $regvalue,
     notify => Service['w32time'],
   }
+
   exec { 'c:/Windows/System32/w32tm.exe /resync':
     refreshonly => true,
   }
+
   service { 'w32time':
     ensure => running,
     enable => true,
     notify => Exec['c:/Windows/System32/w32tm.exe /resync'],
+  }
+  
+  if $timezone {
+    validate_re($timezone, $timezones, 'The specified string is not a valid Timezone')
+    exec { "C:/Windows/System32/tzutil.exe /s \"$timezone\"":
+      unless => "C:\\Windows\\System32\\cmd.exe /C tzutil.exe /g | findstr /C:\"$timezone\"",
+      cwd    => 'C:/Windows/System32'
+    }
   }
 
 }
