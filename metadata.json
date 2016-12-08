@@ -1,6 +1,6 @@
 {
   "name": "ncorrare-windowstime",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "author": "ncorrare",
   "summary": "A module to manage time configuration in Windows",
   "license": "Apache-2.0",
@@ -20,7 +20,11 @@
   "requirements": [
     {
       "name": "pe",
-      "version_requirement": " >=2015.2.0 < 2016.5.0"
+      "version_requirement": " >=2016.1.0 =< 2016.5.0"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.5.0 < 5.0.0"
     }
   ],
   "dependencies": [
