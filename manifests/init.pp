@@ -71,8 +71,9 @@ class windowstime (
   
   if $timezone {
     validate_re($timezone, $timezones, 'The specified string is not a valid Timezone')
-    exec { "c:/Windows/System32/tzutil.exe /s \"$timezone\"":
+    exec { "tzutil.exe /s \"$timezone\"":
       unless => "cmd.exe /C tzutil.exe /g | findstr /C:\"$timezone\"",
+      cwd    => 'C:/Windows/System32'
     }
   }
 
