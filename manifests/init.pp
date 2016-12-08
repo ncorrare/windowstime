@@ -41,7 +41,7 @@
 #
 class windowstime (
   Hash $servers,
-  Optional[Pattern[$timezones]] $timezone,
+  Pattern[$timezones] $timezone,
 ) {
 
   $regvalue = maptoreg($servers)
