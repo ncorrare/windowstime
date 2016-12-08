@@ -41,8 +41,11 @@
 #
 class windowstime (
   Hash $servers,
-  Pattern[$timezones] $timezone,
+  String $timezone = undef,
+  Array $timezones,
 ) {
+
+  validate_re($timezone, $timezones, 'The specified string is not a valid Timezone')
 
   $regvalue = maptoreg($servers)
   registry_value { 'HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\Type':
