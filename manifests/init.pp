@@ -1,4 +1,4 @@
- Class: windowstime
+# Class: windowstime
 # ===========================
 #
 # A module to manage windows time configuration.
