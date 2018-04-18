@@ -67,7 +67,7 @@ class windowstime (
     enable => true,
     notify => Exec['c:/Windows/System32/w32tm.exe /resync'],
   }
-  
+
   if $timezone {
     validate_re($timezone, $timezones, 'The specified string is not a valid Timezone')
     if $timezone != $facts['timezone'] {
