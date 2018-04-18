@@ -72,7 +72,7 @@ class windowstime (
     validate_re($timezone, $timezones, 'The specified string is not a valid Timezone')
     if $timezone != $facts['timezone'] {
       $system32dir = $facts['os']['windows']['system32']
-      exec { "$system32dir\\tzutil.exe /s \"$timezone\"":
+      exec { "${system32dir}\\tzutil.exe /s ${timezone}":
       }
     }
   }
