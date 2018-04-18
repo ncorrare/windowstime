@@ -41,15 +41,15 @@
 #
 class windowstime (
   Optional[Hash] $servers,
-  Optional[String] $timezone = undef,
   Optional[Array] $timezones,
+  Optional[String] $timezone = undef,
 ) {
 
   $regvalue = maptoreg($servers)
   registry_value { 'HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\Type':
     ensure => present,
     type   => string,
-    data   => 'NTP'
+    data   => 'NTP',
   }
 
   registry_value { 'HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\NtpServer':
@@ -77,5 +77,4 @@ class windowstime (
       }
     }
   }
-
 }
