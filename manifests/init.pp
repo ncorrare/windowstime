@@ -1,4 +1,4 @@
-# Class: windowstime
+ Class: windowstime
 # ===========================
 #
 # A module to manage windows time configuration.
@@ -44,7 +44,6 @@ class windowstime (
   Optional[Array] $timezones,
   Optional[String] $timezone = undef,
 ) {
-
   $regvalue = maptoreg($servers)
   registry_value { 'HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\Type':
     ensure => present,
