@@ -57,7 +57,8 @@ windowstime::timezones:
   - Montevideo Standard Time
   - Morocco Standard Time
   - Mountain Standard Time
-  - Mountain Standard Time (Mexico)
+
+- Mountain Standard Time (Mexico)
   - Myanmar Standard Time
   - N. Central Asia Standard Time
   - Namibia Standard Time
@@ -107,3 +108,5 @@ windowstime::servers:
   pool.ntp.org: "0x01"
   time.windows.com: "0x01"
   time.nist.gov: "0x02"
+
+windowstime::syncflag: "local"
