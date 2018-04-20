@@ -64,6 +64,7 @@ class windowstime (
     ensure => present,
     type   => string,
     data   => $synctype,
+    notify => Service['w32time'],
   }
 
   registry_value { 'HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\NtpServer':
