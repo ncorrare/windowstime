@@ -19,6 +19,13 @@
 #               'time.windows.com' => '0x01',
 #               'time.nist.gov'    => '0x02',
 #  }
+#
+# * 'syncflag'
+# Allows specification of syncing from local ntp server or domain hierarchy. Possible values are:
+# 'local'
+# 'domain'
+# The default is 'local'.
+#
 # Examples
 # --------
 #
@@ -43,12 +50,20 @@ class windowstime (
   Optional[Hash] $servers,
   Optional[Array] $timezones,
   Optional[String] $timezone = undef,
+  Optional[String] $syncflag = 'local',
 ) {
   $regvalue = maptoreg($servers)
+
+  $synctype = $syncflag ? {
+    'local' => 'NTP',
+    'domain' => 'NT5DS',
+    default  => 'NTP',
+  }
+
   registry_value { 'HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\Type':
     ensure => present,
     type   => string,
-    data   => 'NTP',
+    data   => $synctype,
   }
 
   registry_value { 'HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\NtpServer':
